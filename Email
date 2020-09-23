@@ -1,0 +1,178 @@
+import smtplib
+
+from email.mime.text import MIMEText
+
+from email.mime.multipart import MIMEMultipart
+
+import time
+
+def heading():
+
+    print('\033[1;34m----------------------------------------\n\033[0m')
+
+    print('\n\033[1;31mFORTIFY\033[0m SOLUTIONS')
+
+    print('☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮')
+
+    print('\033[0;32mVersion:1.0\nrelease date:26-10-2019\033[0m\n')
+
+    print('\033[0;34;40m',time.asctime(),'\033[0m')
+
+    print('☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮')
+
+def topic():
+
+    print('\033[31m【E】【M】【A】【I】【L】 【B】【O】【M】【B】【I】【N】【G】\n💣💣\033[34m░▒▓█►─═  βｏ𝐦в ═─◄█▓▒░\033[0m\n')
+
+def subject1():
+
+    subject = input('\033[31mEmail Subject :\033[0m')
+
+    return subject
+
+def sender_ID():
+
+    sender_ID = input('\033[31mEnter Sender Email ID:\033[0m ')
+
+    return  sender_ID
+
+def password():
+
+    password = input('\033[31mSender Log-In password :\033[0m')
+
+    return password
+
+def duration():
+
+    while True:
+
+        try:
+
+            c = int(input('\n\033[31mEnter time (Seconds) duration to send E-mail(s) : \033[0m'))
+
+            if c >= 1:
+
+                break
+
+        except ValueError:
+
+            print('\n𝔀𝓪𝓻𝓷𝓲𝓷𝓰!!!!\nEnter Valid Input')
+
+    return c
+
+def numberofmailtosend():
+
+    while True:
+
+        try:
+
+            c = int(input('\n\033[31mEnter, Number of times you what to send this message to receiver (Range 1 to 10): \033[0m'))
+
+            if c <= 100 and c >= 1:
+
+                break
+
+            print('\nEnter value within Range (1 to 100)')
+
+        except ValueError:
+
+            print('\nEnter Valid Input')
+
+    return c
+
+def main():
+
+    a = subject1()
+
+    c = sender_ID()
+
+    d = password()
+
+    receiver_ID = input('\n\033[31mEnter Receiver Email ID:\033[0m')
+
+    e = input('\n\033[31mMessage: \033[0m')
+
+    f = duration()
+
+    counttotal = numberofmailtosend()
+
+    count = 1
+
+    while True:
+
+        time.sleep(f)
+
+        msg = MIMEMultipart()
+
+        msg['From'] = c
+
+        msg['To'] = receiver_ID
+
+        msg['subject'] = a
+
+        body = e
+
+        msg.attach(MIMEText(body,'html'))
+
+        text = msg.as_string()
+
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+
+        server.starttls()
+
+        server.login(c, d)
+
+        server.sendmail(c, receiver_ID, text)
+
+        server.quit()
+
+        print(f'\033[31m{count}\033[0m Message Send to \033[31m{receiver_ID}\033[0m')
+
+        count += 1
+
+        print(f'\nNext Message shall be release after \033[1;31m{f}\033[0m seconds ')
+
+        if count >= counttotal:
+
+            time.sleep(3)
+
+            print('\n\033[1;35mWe like to thanks all team members for its support and effort to develop this tool!!!!!')
+
+            print('\n\033[1;31mFORTIFY\033[0m SOLUTIONS\n\033[0m')
+
+            break
+
+print('\033[1;31m ______ ____  _____ _______ _____ ________     __\n'
+
+'|  ____/ __ \|  __ \__   __|_   _|  ____\ \   / /\n'
+
+'| |__ | |  | | |__) | | |    | | | |__   \ \_/ / \n'
+
+'|  __|| |  | |  _  /  | |    | | |  __|   \   /  \n'
+
+'| |   | |__| | | \ \  | |   _| |_| |       | |   \n'
+
+'|_|    \____/|_|  \_\ |_|  |_____|_|       |_|   \033[0m\n'
+
+'\n'
+
+  '_____  ____  _     _    _ _______ _____ ____  _   _  _____\n' 
+
+ '/ ____|/ __ \| |   | |  | |__   __|_   _/ __ \| \ | |/ ____|\n'
+
+'| (___ | |  | | |   | |  | |  | |    | || |  | |  \| | (___  \n'
+
+ '\___ \| |  | | |   | |  | |  | |    | || |  | | . ` |\___ \ \n'
+
+' ____) | |__| | |___| |__| |  | |   _| || |__| | |\  |____) |\n'
+
+'|_____/ \____/|______\____/   |_|  |_____\____/|_| \_|_____/ \n')
+
+heading()
+
+topic()
+
+main()
+
+topic()
+
